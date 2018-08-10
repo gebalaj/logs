@@ -9,11 +9,11 @@ import java.nio.file.Paths
 class EventProcessorSpec extends Specification {
 
 	def repository = Mock(EventRepository)
-	def processor = new EventProcessor(repository);
+	def processor = new EventProcessor(repository: repository)
 
 	def 'processed events have to be saved'() {
 		given: "example events come from file"
-		def events = Files.lines(Paths.get(readResource("example.log").toURI()));
+		def events = Files.lines(Paths.get(readResource("example.log").toURI()))
 
 		when: "the processor reads events from stream"
 		processor.parseAndSave(events)
